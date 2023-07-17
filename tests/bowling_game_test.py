@@ -11,14 +11,14 @@ def test_worst_scenario_game(game_instance: Game) -> None:
     assert game_score == 0
 
 
-def test_all_ones_game(game_instance: Game) -> None:
+def test_average_scenario_game(game_instance: Game) -> None:
     # Act
     for _ in range(20):
-        game_instance.roll(1)
+        game_instance.roll(4)
     game_score = game_instance.score()
 
     # Assert
-    assert game_score == 20
+    assert game_score == 80
 
 
 def test_single_spare(game_instance: Game) -> None:
