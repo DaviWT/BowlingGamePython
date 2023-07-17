@@ -10,6 +10,8 @@ class Game:
 
     def roll(self, pins: int) -> None:
         self._roll_list.append(Roll(pins))
+        if pins == 10:
+            self._roll_list.append(Roll(0))
 
     def score(self) -> int:
         final_score = 0
@@ -18,7 +20,12 @@ class Game:
             second_roll = self._roll_list[roll_index + 1].pins
             frame_score = first_roll + second_roll
             final_score += frame_score
-            if first_roll + second_roll == 10:
-                final_score += self._roll_list[roll_index + 2].pins
+            if first_roll == 10:
+                first_next_result = self._roll_list[roll_index + 2].pins
+                second_next_result = self._roll_list[roll_index + 3].pins
+                final_score += first_next_result + second_next_result
+            elif first_roll + second_roll == 10:
+                first_next_result = self._roll_list[roll_index + 2].pins
+                final_score += first_next_result
 
         return final_score
